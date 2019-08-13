@@ -9,6 +9,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -58,7 +59,10 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK){
             String code = data.getStringExtra("code");
-            webView.loadUrl("javascript:showCode(" + code + ")");
+
+            Log.v("brad", "android: " + code);
+
+            webView.loadUrl("javascript:showCode('" + code + "')");
         }
     }
 }

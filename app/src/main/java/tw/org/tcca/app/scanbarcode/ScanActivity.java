@@ -26,26 +26,26 @@ public class ScanActivity extends AppCompatActivity
         super.onResume();
         mScannerView.setResultHandler(this); // Register ourselves as a handler for scan results.
         mScannerView.startCamera();          // Start camera on resume
+        mScannerView.setAspectTolerance(0.5f);
     }
 
     @Override
     protected void onPause() {
-        super.onPause();
         super.onPause();
         mScannerView.stopCamera();           // Stop camera on pause
     }
 
     @Override
     public void handleResult(Result rawResult) {
-        Log.v("brad", rawResult.getContents());
+        String result = rawResult.getContents();
+        Log.v("brad", result);
         Log.v("brad", rawResult.getBarcodeFormat().getName());
         mScannerView.resumeCameraPreview(this);
 
-        String result = rawResult.getContents();
         if (result != null){
             Intent intent = new Intent();
             intent.putExtra("code", result);
-            setResult(RESULT_OK);
+            setResult(RESULT_OK, intent);
             finish();
         }
 
