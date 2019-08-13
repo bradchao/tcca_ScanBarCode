@@ -2,6 +2,10 @@
     function scan(){
         brad.callFromJS();
     }
+    function showCode(code){
+        document.getElementById('here').value = code;
+
+    }
 </script>
-<input type="text" >
+<input type="text" id="here">
 <input type="button" onclick="scan()" value="Scan">

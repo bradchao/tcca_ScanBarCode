@@ -2,6 +2,7 @@ package tw.org.tcca.app.scanbarcode;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -36,8 +37,19 @@ public class ScanActivity extends AppCompatActivity
 
     @Override
     public void handleResult(Result rawResult) {
-        mScannerView.resumeCameraPreview(this);
         Log.v("brad", rawResult.getContents());
         Log.v("brad", rawResult.getBarcodeFormat().getName());
+        mScannerView.resumeCameraPreview(this);
+
+        String result = rawResult.getContents();
+        if (result != null){
+            Intent intent = new Intent();
+            intent.putExtra("code", result);
+            setResult(RESULT_OK);
+            finish();
+        }
+
+
+
     }
 }

@@ -57,7 +57,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK){
-
+            String code = data.getStringExtra("code");
+            webView.loadUrl("javascript:showCode(" + code + ")");
         }
     }
 }
