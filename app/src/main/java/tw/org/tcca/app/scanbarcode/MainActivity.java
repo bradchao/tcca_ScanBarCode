@@ -1,10 +1,12 @@
 package tw.org.tcca.app.scanbarcode;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.webkit.JavascriptInterface;
@@ -46,7 +48,16 @@ public class MainActivity extends AppCompatActivity {
         @JavascriptInterface
         public void callFromJS(){
             // call scan bar
+            Intent intent = new Intent(MainActivity.this, ScanActivity.class);
+            startActivityForResult(intent, 123);
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK){
+
+        }
+    }
 }
